@@ -5,7 +5,7 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
 
   @bug_1653
   @severity=minor
-  Scenario: Incorrect redirection url
+  Scenario: Incorrect redirection url : instagram or goole+
     When Click on the logo "g" of Google+ located at the header
     Then A redirection is made to the Instagram page of the Epistrophe site
 
@@ -61,7 +61,7 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
 
   @bug_1732
   @severity=minor
-  Scenario: Incorrect url
+  Scenario: Incorrect url : twitter fake redirection
     When Scroll down to the section "Nos références", at the panel level "Contactez-nous" click on the Twitter link
     Then A redirection is made to Twitter with a message mentioning that the page does not exist
 

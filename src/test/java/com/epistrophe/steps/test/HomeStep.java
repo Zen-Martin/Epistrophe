@@ -22,7 +22,6 @@ public class HomeStep implements En {
         });
 
         Then("A redirection is made to Twitter with a message mentioning that the page does not exist", () -> {
-            homePage.verifyTwitterLinkError();
             homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyTwitterLinkError(),true);
         });
@@ -32,7 +31,6 @@ public class HomeStep implements En {
         });
 
         Then("A redirection is made to the Instagram page of the Epistrophe site", () -> {
-            homePage.verifyLogoLinkError();
             homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyLogoLinkError(),true);
         });

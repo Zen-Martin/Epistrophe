@@ -63,26 +63,30 @@ public class HomePage extends Page {
                                  .contains(gLogoHeader.getAttribute("title").toLowerCase()));
     }
 
-    public void switchOnNewTab(){
+    public void switchOnTab(int tabNumber){
         ArrayList<String> Tab = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(Tab.get(1));
+        driver.switchTo().window(Tab.get(tabNumber));
     }
 
     public void clickOnTwitterReference(){
         clickOn(twitterReferenceLink);
-        switchOnNewTab();
+        switchOnTab(1);
+        waitForLoadingPage();
     }
 
     public void clickOnGLogo(){
         clickOn(gLogoHeader);
-        switchOnNewTab();
+        switchOnTab(1);
+        waitForLoadingPage();
     }
 
     public boolean verifyTwitterLinkError(){
+        switchOnTab(0);
         return !isTwitterLinkError();
     }
 
     public boolean verifyLogoLinkError(){
+        switchOnTab(0);
         return !isLogoLinkError();
     }
 
