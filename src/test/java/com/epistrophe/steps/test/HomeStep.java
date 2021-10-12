@@ -27,59 +27,13 @@ public class HomeStep implements En {
             Assert.assertEquals(homePage.verifyTwitterLinkError(),true);
         });
 
-
-        /*When("Check URL", () -> {
-            homePage.verifySecurePage();
+        When("Click on the logo {string} of Google+ located at the header", (String string) -> {
+             homePage.clickOnGLogo();
         });
 
-        Then("Access is unsecured", () -> {
-            homePage.saveScreenShotPNG();
-            Assert.assertEquals(homePage.verifySecurePage(),true);
+        Then("A redirection is made to the Instagram page of the Epistrophe site", () -> {
+            homePage.verifyLogoLinkError();
         });
-
-        When("Scroll to the footer", () -> {
-            homePage.scrollToFooter();
-        });
-
-        When("Click on the Consulting tab", () -> {
-            homePage.clickOnConsultingTab();
-        });
-
-        When("Click on the Contact Us tab", () -> {
-            homePage.clickOnContactUsTab();
-        });
-
-        Then("Spelling error at the Development level", () -> {
-            homePage.verifyDevelopmentSpelling();
-            homePage.saveScreenShotPNG();
-            Assert.assertEquals(homePage.verifyDevelopmentSpelling(),true);
-        });
-
-        Then("options for redirecting to social networks should appear only one time", () -> {
-            homePage.verifyDuplicateSocialNetwork();
-        });
-
-        But("Facebook and Instagram social media access options appear in duplicate", () -> {
-            homePage.saveScreenShotPNG();
-            Assert.assertEquals(homePage.verifyDuplicateSocialNetwork(),true);
-        });
-
-        When("Enter your email address in the newsletter subscription field", () -> {
-            homePage.setNewsletterEmail();
-        });
-
-        When("Click on the Subscribe button", () -> {
-            homePage.clickOnSubscribre();
-        });
-
-        Then("A registration confirmation message should appear", () -> {
-            homePage.verifyNewsletterSubscription();
-        });
-
-        But("We are redirected to a page without content with an error message at the foot of the page", () -> {
-            homePage.saveScreenShotPNG();
-            Assert.assertEquals(homePage.verifyNewsletterSubscription(),true);
-        });*/
 
     }
 

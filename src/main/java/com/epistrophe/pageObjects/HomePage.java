@@ -2,7 +2,6 @@ package com.epistrophe.pageObjects;
 
 import com.epistrophe.config.Configuration;
 import com.epistrophe.config.Properties;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -14,6 +13,9 @@ public class HomePage extends Page {
 
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/a[1]")
     private WebElement twitterLogoHeader;
+
+    @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]")
+    private WebElement gLogoHeader;
 
     @FindBy(partialLinkText = "https://twitter.com/")
     private WebElement twitterReferenceLink;
@@ -52,17 +54,36 @@ public class HomePage extends Page {
     }
 
     public boolean isTwitterLinkError(){
-        return (!twitterLogoHeader.getAttribute("href").equals(twitterReferenceLink.getAttribute("href")));
+        return (!twitterLogoHeader.getAttribute("href")
+                                  .equals(twitterReferenceLink.getAttribute("href")));
+    }
+
+    public boolean isLogoLinkError(){
+        return (!gLogoHeader.getAttribute("href")
+                                 .contains(gLogoHeader.getAttribute("title").toLowerCase()));
+    }
+
+    public void switchOnNewTab(){
+        ArrayList<String> Tab = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(Tab.get(1));
     }
 
     public void clickOnTwitterReference(){
-        ArrayList<String> Tab = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(Tab.get(1));
-        saveScreenShotPNG();
+        clickOn(twitterReferenceLink);
+        switchOnNewTab();
+    }
+
+    public void clickOnGLogo(){
+        clickOn(gLogoHeader);
+        switchOnNewTab();
     }
 
     public boolean verifyTwitterLinkError(){
         return !isTwitterLinkError();
+    }
+
+    public boolean verifyLogoLinkError(){
+        return !isLogoLinkError();
     }
 
 }

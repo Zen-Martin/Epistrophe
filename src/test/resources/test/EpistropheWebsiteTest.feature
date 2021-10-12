@@ -6,8 +6,8 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
   @bug_1653
   @severity=minor
   Scenario: Incorrect redirection url
-    When  Click on the logo "g" of Google+ located at the header
-    Then  A redirection is made to the Instagram page of the Epistrophe site
+    When Click on the logo "g" of Google+ located at the header
+    Then A redirection is made to the Instagram page of the Epistrophe site
 
   @bug_1659
   @severity=minor
