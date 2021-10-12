@@ -14,6 +14,12 @@ public class HomePage extends Page {
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/a[1]")
     private WebElement twitterLogoHeader;
 
+    @FindBy(linkText = "Site web")
+    private WebElement siteWebHeader;
+
+    @FindBy(linkText = "Portfolio Sites Web")
+    private WebElement portFolio;
+
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]")
     private WebElement gLogoHeader;
 
@@ -71,6 +77,12 @@ public class HomePage extends Page {
     public void clickOnTwitterReference(){
         clickOn(twitterReferenceLink);
         switchOnTab(1);
+        waitForLoadingPage();
+    }
+
+    public void clickOnPortFolio(){
+        action.moveToElement(siteWebHeader).perform();
+        clickOn(portFolio);
         waitForLoadingPage();
     }
 

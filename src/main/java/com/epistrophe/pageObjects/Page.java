@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.ByteArrayInputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Duration;
 import java.util.function.Function;
 
@@ -126,6 +128,20 @@ public class Page {
         }
         element.click();
     }
+
+    public boolean verifyLink(WebElement element) {
+        String verify = "";
+        try {
+            URL link = new URL(element.getAttribute("href"));
+            HttpURLConnection httpConn = (HttpURLConnection) link.openConnection();
+            httpConn.setConnectTimeout(3000);
+            httpConn.connect();
+            verify = httpConn.getResponseCode()+"";
+        } catch (Exception e) {
+        }
+        return verify.startsWith("2");
+    }
+
 
     protected void scroll(int height){
         js.executeScript("window.scrollBy(0,"+height+")");

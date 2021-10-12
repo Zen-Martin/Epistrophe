@@ -16,7 +16,7 @@ public class HomeStep implements En {
             homePage.navigateToHomePage();
         });
 
-        When("Scroll down to the section {string}, at the panel level {string} click on the Twitter link", (String string, String string2) -> {
+        When("Scroll down to the section *Nos références*, at the panel level *Contactez-nous* click on the Twitter link", () -> {
             homePage.scrollToTwitterReference();
             homePage.clickOnTwitterReference();
         });
@@ -26,13 +26,17 @@ public class HomeStep implements En {
             Assert.assertEquals(homePage.verifyTwitterLinkError(),true);
         });
 
-        When("Click on the logo {string} of Google+ located at the header", (String string) -> {
+        When("Click on the logo *g* of Google+ located at the header", () -> {
              homePage.clickOnGLogo();
         });
 
         Then("A redirection is made to the Instagram page of the Epistrophe site", () -> {
             homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyLogoLinkError(),true);
+        });
+
+        When("In the navigation bar, put the cursor on *Site* and click on *Portfolio Site Web*", () -> {
+            homePage.clickOnPortFolio();
         });
 
     }
