@@ -87,7 +87,8 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
   @severity=minor
   Scenario: Adding an anchor
     When In the navigation bar, put the cursor on *Nom de domaine* and click on *Domaine en .Africa*
-    And A redirection is made to the site "epistrophe.africa", scroll down to the form, fill in and validate
+    And A redirection is made to the site "epistrophe.africa", scroll down to the form
+    And Fill in and validate
     Then Adding an anchor to the sending confirmation message
     But The cursor remains at the buttom of the page giving the impression that the page is empty.
 
@@ -102,8 +103,8 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
   @bug_1750
   @severity=minor
   Scenario: 404 error
-    When In the navigation bar, put the cursor on "Site" and click on "Portfolio Site Web"
-    And Page opens click on one item, in the breadcrumb trail below the title click on "Portfolio item"
+    When In the navigation bar, put the cursor on *Site* and click on *Portfolio Site Web*
+    And Page opens click on one item, in the breadcrumb trail below the title click on *Portfolio item*
     Then A 404 error page is displayed
 
   @bug_1759

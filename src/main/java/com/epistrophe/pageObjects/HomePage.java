@@ -20,6 +20,18 @@ public class HomePage extends Page {
     @FindBy(linkText = "Portfolio Sites Web")
     private WebElement portFolio;
 
+    @FindBy(linkText = "Nom de domaine")
+    private WebElement domainName;
+
+    @FindBy(linkText = "Domaine en .Africa")
+    private WebElement africaDomain;
+
+    @FindBy(linkText = "Contacts & infos")
+    private WebElement contactInfo;
+
+    @FindBy(linkText = "Press book")
+    private WebElement pressBook;
+
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]")
     private WebElement gLogoHeader;
 
@@ -43,10 +55,16 @@ public class HomePage extends Page {
 
     public void handleAccess() {
         waitForLoadingPage();
-        driver.switchTo().frame(0);
-        clickOn(messengerFrame);
-        driver.switchTo().defaultContent();
-        clickOn(adsFrame);
+        try {
+            driver.switchTo().frame(0);
+            clickOn(messengerFrame);
+        }catch (Exception e){}
+
+        try {
+            driver.switchTo().defaultContent();
+            clickOn(adsFrame);
+        }catch (Exception e){}
+
     }
 
     public void navigateToHomePage() {
@@ -86,6 +104,18 @@ public class HomePage extends Page {
         waitForLoadingPage();
     }
 
+    public void clickOnAfricaDomain(){
+        action.moveToElement(domainName).perform();
+        clickOn(africaDomain);
+        waitForLoadingPage();
+    }
+
+    public void clickOnPressBook(){
+        action.moveToElement(contactInfo).perform();
+        clickOn(pressBook);
+        waitForLoadingPage();
+    }
+
     public void clickOnGLogo(){
         clickOn(gLogoHeader);
         switchOnTab(1);
@@ -100,6 +130,22 @@ public class HomePage extends Page {
     public boolean verifyLogoLinkError(){
         switchOnTab(0);
         return !isLogoLinkError();
+    }
+
+    private boolean isAttributePresent(WebElement element) {
+        Boolean result = false;
+        try {
+            String value = element.getAttribute("href");
+            if (value != null){
+                result = true;
+            }
+        } catch (Exception e) {}
+
+        return result;
+    }
+
+    public boolean verifyPressBookLink(){
+        return isAttributePresent(pressBook);
     }
 
 }

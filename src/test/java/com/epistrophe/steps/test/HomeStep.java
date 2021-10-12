@@ -39,6 +39,20 @@ public class HomeStep implements En {
             homePage.clickOnPortFolio();
         });
 
+        When("In the navigation bar, put the cursor on *Nom de domaine* and click on *Domaine en .Africa*", () -> {
+            homePage.clickOnAfricaDomain();
+        });
+
+        When("In the navigation bar, put the cursor on *Contacts & infos* and click on *Press book*", () -> {
+            homePage.clickOnPressBook();
+        });
+
+        Then("No reaction, the link is not associated with any url", () -> {
+            homePage.saveScreenShotPNG();
+            Assert.assertEquals(homePage.verifyPressBookLink(),true);
+        });
+
+
     }
 
 }
