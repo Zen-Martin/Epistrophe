@@ -24,9 +24,9 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
   @recommandation_1671
   @severity=minor
   Scenario: Do not use Google form for the order
-    And    In the navigation bar, put the cursor on "Nom de domaine" and click on "commandez votre nom de domaine"
-    When   Fill in all the form fields with "@@@@@" and send
-    Then   The form is sent successfully although the values are incorrect
+    And In the navigation bar, put the cursor on "Nom de domaine" and click on "commandez votre nom de domaine"
+    When Fill in all the form fields with "@@@@@" and send
+    Then The form is sent successfully although the values are incorrect
 
   @bug_1706
   @severity=minor
@@ -56,8 +56,8 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
   @bug_1729
   @severity=minor
   Scenario: Content alignment
-    When   Scroll down to the offers
-    Then   Note that the elements are note aligned
+    When Scroll down to the offers
+    Then Note that the elements are note aligned
 
   @bug_1732
   @severity=minor
