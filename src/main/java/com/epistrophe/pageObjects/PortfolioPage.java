@@ -54,5 +54,4 @@ public class PortfolioPage extends Page {
         return !driver.getTitle().contains("Page Not Found");
     }
 
-
 }
