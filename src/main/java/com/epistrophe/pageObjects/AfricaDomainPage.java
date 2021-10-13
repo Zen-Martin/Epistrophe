@@ -9,7 +9,6 @@ public class AfricaDomainPage extends Page{
     private WebElement adsFrame;
 
     public AfricaDomainPage() {
-
     }
 
     public boolean verifyHeaderSecurity(){

@@ -1,7 +1,5 @@
 package com.epistrophe.pageObjects;
 
-import com.epistrophe.config.Configuration;
-import com.epistrophe.config.Properties;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -68,8 +66,6 @@ public class HomePage extends Page {
     @FindBy(css = ".sgpb-popup-close-button-1")
     private WebElement adsFrame;
 
-    private final static Configuration PROP  = Properties.Config;
-
     public HomePage() {
     }
 
@@ -89,7 +85,7 @@ public class HomePage extends Page {
     }
 
     public void navigateToHomePage() {
-        get(PROP.getEnvironment());
+        get(config.getEnvironment());
         handleAccess();
     }
 

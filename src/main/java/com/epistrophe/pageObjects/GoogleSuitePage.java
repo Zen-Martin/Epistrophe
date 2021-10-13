@@ -9,7 +9,6 @@ public class GoogleSuitePage extends Page{
     private WebElement spaceUnderHeader;
 
     public GoogleSuitePage() {
-
      }
 
      public boolean verifyEmptySpace(){
