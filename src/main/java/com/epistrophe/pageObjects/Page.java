@@ -48,7 +48,7 @@ public class Page {
         wait        = new WebDriverWait(driver, Duration.ofSeconds(4));
         shortWait   = new WebDriverWait(driver, Duration.ofSeconds(6));
         middleWait  = new WebDriverWait(driver, Duration.ofSeconds(12));
-        longWait    = new WebDriverWait(driver, Duration.ofSeconds(15));
+        longWait    = new WebDriverWait(driver, Duration.ofSeconds(60));
 
     }
 

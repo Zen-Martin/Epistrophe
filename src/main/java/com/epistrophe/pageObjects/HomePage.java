@@ -11,6 +11,18 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class HomePage extends Page {
 
+    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='mfn-offer-slider']/div[1]/div[1]")
+    private WebElement caroussel;
+
+    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[10]")
+    private WebElement firstOffer;
+
+    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[11]")
+    private WebElement secondOffer;
+
+    @FindBy(linkText = "Passez au Google Workspace ou à l'E-mail Pro")
+    private WebElement firstCarousselElement;
+
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/a[1]")
     private WebElement twitterLogoHeader;
 
@@ -31,6 +43,15 @@ public class HomePage extends Page {
 
     @FindBy(linkText = "Press book")
     private WebElement pressBook;
+
+    @FindBy(linkText = "Messagerie Pro")
+    private WebElement messageriePro;
+
+    @FindBy(linkText = "Google Workspace")
+    private WebElement googleWorspace;
+
+    @FindBy(linkText = "Commandez votre nom de domaine")
+    private WebElement commandDomainName;
 
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]")
     private WebElement gLogoHeader;
@@ -116,6 +137,12 @@ public class HomePage extends Page {
         waitForLoadingPage();
     }
 
+    public void clickOnGoogleWorkspace(){
+        action.moveToElement(messageriePro).perform();
+        clickOn(googleWorspace);
+        waitForLoadingPage();
+    }
+
     public void clickOnGLogo(){
         clickOn(gLogoHeader);
         switchOnTab(1);
@@ -144,8 +171,33 @@ public class HomePage extends Page {
         return result;
     }
 
+    public void goToElement(){
+        longUntil(visibilityOf(firstCarousselElement));
+        action.moveToElement(firstCarousselElement).perform();
+    }
+
+    private boolean isParagraphTag() {
+        return firstCarousselElement.getTagName().equals("p");
+    }
+
+    public void scrollOnOffers(){
+        scroll(firstOffer.getLocation().getY()+20);
+    }
+
+    public boolean isSameSize(){
+        return (firstOffer.getSize().getHeight()==secondOffer.getSize().getHeight()
+                && firstOffer.getSize().getWidth()==secondOffer.getSize().getWidth());
+    }
+
     public boolean verifyPressBookLink(){
         return isAttributePresent(pressBook);
     }
 
+    public boolean verifyCarousselElement() {
+        return (isAttributePresent(firstCarousselElement)||isParagraphTag());
+    }
+
+    public boolean verifyOfferSize() {
+        return isSameSize();
+    }
 }

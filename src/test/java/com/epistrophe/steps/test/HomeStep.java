@@ -52,6 +52,30 @@ public class HomeStep implements En {
             Assert.assertEquals(homePage.verifyPressBookLink(),true);
         });
 
+        When("In the carousel, overlay the black text on the slides", () -> {
+            homePage.goToElement();
+        });
+
+        Then("Text are placed in <a> tags instead of <p>", () -> {
+            homePage.saveScreenShotPNG();
+            Assert.assertEquals(homePage.verifyCarousselElement(),true);
+        });
+
+        When("Scroll down to the offers", () -> {
+            homePage.scrollOnOffers();
+        });
+
+        Then("Note that the elements are note aligned", () -> {
+            homePage.saveScreenShotPNG();
+            Assert.assertEquals(homePage.verifyOfferSize(),true);
+        });
+
+        When("In the navigation bar, put the cursor on *Messagerie Pro* and click on *Google Workspace*", () -> {
+            homePage.clickOnGoogleWorkspace();
+        });
+
+
+
 
     }
 

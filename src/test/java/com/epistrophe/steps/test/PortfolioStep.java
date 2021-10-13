@@ -30,8 +30,15 @@ public class PortfolioStep implements En {
             Assert.assertEquals(portfolioPage.verifyWebsiteAccess(),true);
         });
 
+        When("Page opens click on one item, in the breadcrumb trail below the title click on *Portfolio item*", () -> {
+            portfolioPage.clickOnlocateOrSaleImage();
+            portfolioPage.clickOnPortfolioItem();
+        });
 
-
+        Then("A {int} error page is displayed", (Integer int1) -> {
+            portfolioPage.saveScreenShotPNG();
+            Assert.assertEquals(portfolioPage.verifyPortfolioItem(),true);
+        });
     }
 
 }

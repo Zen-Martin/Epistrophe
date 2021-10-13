@@ -1,7 +1,5 @@
 package com.epistrophe.pageObjects;
 
-import com.epistrophe.config.Configuration;
-import com.epistrophe.config.Properties;
 import org.apache.tika.language.LanguageIdentifier;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +18,8 @@ public class PortfolioPage extends Page {
     @FindBy(linkText = "Voir le site")
     private WebElement websiteAccess;
 
-    private final static Configuration PROP  = Properties.Config;
+    @FindBy(linkText = "Portfolio item")
+    private WebElement portfolioItem;
 
     public PortfolioPage() {
     }
@@ -43,9 +42,16 @@ public class PortfolioPage extends Page {
         clickOn(websiteAccess);
     }
 
+    public void clickOnPortfolioItem(){
+        clickOn(portfolioItem);
+    }
+
     public boolean verifyWebsiteAccess(){
-        driver.navigate().back();
         return verifyLink(websiteAccess);
+    }
+
+    public boolean verifyPortfolioItem(){
+        return !driver.getTitle().contains("Page Not Found");
     }
 
 
