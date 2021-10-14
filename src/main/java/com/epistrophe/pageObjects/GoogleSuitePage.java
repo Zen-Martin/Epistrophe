@@ -5,12 +5,12 @@ import org.openqa.selenium.support.FindBy;
 
 public class GoogleSuitePage extends Page{
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[2]/div[1]")
+    @FindBy(css = "div.article_video")
     private WebElement spaceUnderHeader;
 
-    public GoogleSuitePage() {
-     }
+    public GoogleSuitePage() { }
 
+    // SSL
      public boolean verifyEmptySpace(){
         return !spaceUnderHeader.getText().isEmpty();
      }

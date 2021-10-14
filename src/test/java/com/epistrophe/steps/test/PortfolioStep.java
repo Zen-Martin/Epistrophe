@@ -18,7 +18,7 @@ public class PortfolioStep implements En {
         });
 
         When("Page opens click on the image with the text *La location et la vente*", () -> {
-            portfolioPage.clickOnlocateOrSaleImage();
+            portfolioPage.clickOnlocateOrSaleImage(null);
         });
 
         When("The page opens, click on *voir le site*", () -> {
@@ -31,7 +31,7 @@ public class PortfolioStep implements En {
         });
 
         When("Page opens click on one item, in the breadcrumb trail below the title click on *Portfolio item*", () -> {
-            portfolioPage.clickOnlocateOrSaleImage();
+            portfolioPage.clickOnlocateOrSaleImage(null);
             portfolioPage.clickOnPortfolioItem();
         });
 

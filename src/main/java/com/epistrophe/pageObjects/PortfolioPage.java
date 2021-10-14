@@ -1,19 +1,24 @@
 package com.epistrophe.pageObjects;
 
 import org.apache.tika.language.LanguageIdentifier;
+import org.apache.tika.language.detect.LanguageDetector;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
 
 public class PortfolioPage extends Page {
 
     @FindBy(linkText = "Next page")
     private WebElement nextButton;
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[1]/div[1]/div[1]/ul[1]/li[1]")
+    @FindBy(css = "div.container ul li.label")
     private WebElement categoryLabel;
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[2]/ul[1]/li[6]/a[1]/img[1]")
-    private WebElement locateSaleImage;
+    @FindBy(css = "ul li a img")
+    private List<WebElement> locateSaleImage;
 
     @FindBy(linkText = "Voir le site")
     private WebElement websiteAccess;
@@ -30,8 +35,8 @@ public class PortfolioPage extends Page {
         return (!nextButtonLangage.getLanguage().equals("fr") && !categoryLabelLangage.getLanguage().equals("fr"));
     }
 
-    public void clickOnlocateOrSaleImage(){
-        clickOn(locateSaleImage);
+    public void clickOnlocateOrSaleImage(Integer elt){
+        clickOn(locateSaleImage.get(Optional.of(elt).orElse(0)));
     }
 
     public boolean verifyElementLangage(){
