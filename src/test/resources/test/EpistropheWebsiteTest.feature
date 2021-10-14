@@ -4,6 +4,7 @@ Feature: Re-Test Cases for Epistrophe Website without account Access
     Given I am on the homePage
 
   @bug_1653
+  @screen
   @severity=minor
   Scenario: Incorrect redirection url : instagram or goole+
     When Click on the logo *g* of Google+ located at the header

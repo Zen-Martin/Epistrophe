@@ -1,9 +1,13 @@
 package com.epistrophe.pageObjects;
 
+import com.google.common.base.Optional;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -23,6 +27,9 @@ public class HomePage extends Page {
 
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/a[1]")
     private WebElement twitterLogoHeader;
+
+    @FindBy( css = "ul#menu-menu > li")
+    private List<WebElement> lstNavBar;
 
     @FindBy(linkText = "Site web")
     private WebElement siteWebHeader;
@@ -71,6 +78,11 @@ public class HomePage extends Page {
 
     @FindBy(css = ".sgpb-popup-close-button-1")
     private WebElement adsFrame;
+
+    /*
+    **/
+    private final static By subMenuSelector = By.cssSelector("ul.sub-menu li");
+
 
     public HomePage() {
     }
@@ -121,22 +133,43 @@ public class HomePage extends Page {
         waitForLoadingPage();
     }
 
-    public void clickOnPortFolio(){
-        action.moveToElement(siteWebHeader).perform();
-        clickOn(portFolio);
+    private void clickOnNavBar( String elementNavigation, String subNavigation  ){
+       WebElement button;
+       WebElement perform = lstNavBar
+                .stream()
+                .filter( elt -> elt.getText().equals(elementNavigation))
+                .findFirst()
+                .get();
+
+       if(perform == null) throw new RuntimeException("Perform Element not found !");
+
+        action.moveToElement(perform).perform();
+        button = perform.findElements(subMenuSelector)
+                .stream()
+                .filter( elt-> elt.getText().equals(subNavigation))
+                .findFirst()
+                .orElseThrow(()->new RuntimeException("Not element Found !"));
+
+        clickOn(button);
         waitForLoadingPage();
+    }
+
+    private void clickOnHeaderMenu( WebElement movePerform, WebElement nextClick ){
+        action.moveToElement(movePerform).perform();
+        clickOn(nextClick);
+        waitForLoadingPage();
+    }
+
+    public void clickOnPortFolio(){
+        clickOnHeaderMenu(siteWebHeader, portFolio);
     }
 
     public void clickOnAfricaDomain(){
-        action.moveToElement(domainName).perform();
-        clickOn(africaDomain);
-        waitForLoadingPage();
+        clickOnHeaderMenu(domainName, africaDomain);
     }
 
     public void clickOnPressBook(){
-        action.moveToElement(contactInfo).perform();
-        clickOn(pressBook);
-        waitForLoadingPage();
+        clickOnHeaderMenu(contactInfo, pressBook);
     }
 
     public void clickOnGoogleWorkspace(){
