@@ -74,6 +74,10 @@ public class HomeStep implements En {
             homePage.clickOnGoogleWorkspace();
         });
 
+        When("In the navigation bar, put the cursor on *Certificats SSL* and click on *Offres standard Epistrophe*", () -> {
+            homePage.clickOnStandardOffer();
+        });
+
 
 
 

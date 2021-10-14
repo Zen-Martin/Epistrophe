@@ -51,6 +51,12 @@ public class HomePage extends Page {
     @FindBy(linkText = "Commandez votre nom de domaine")
     private WebElement commandDomainName;
 
+    @FindBy(linkText = "Certificats SSL")
+    private WebElement certificatSsl;
+
+    @FindBy(linkText = "Offres Standard Epistrophe")
+    private WebElement standardOffer;
+
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]")
     private WebElement gLogoHeader;
 
@@ -139,6 +145,12 @@ public class HomePage extends Page {
         waitForLoadingPage();
     }
 
+    public void clickOnStandardOffer(){
+        action.moveToElement(certificatSsl).perform();
+        clickOn(standardOffer);
+        waitForLoadingPage();
+    }
+
     public void clickOnGLogo(){
         clickOn(gLogoHeader);
         switchOnTab(1);
@@ -155,7 +167,7 @@ public class HomePage extends Page {
         return !isLogoLinkError();
     }
 
-    private boolean isAttributePresent(WebElement element) {
+    private boolean isLinkAttributePresent(WebElement element) {
         Boolean result = false;
         try {
             String value = element.getAttribute("href");
@@ -186,11 +198,11 @@ public class HomePage extends Page {
     }
 
     public boolean verifyPressBookLink(){
-        return isAttributePresent(pressBook);
+        return isLinkAttributePresent(pressBook);
     }
 
     public boolean verifyCarousselElement() {
-        return (isAttributePresent(firstCarousselElement)||isParagraphTag());
+        return (isLinkAttributePresent(firstCarousselElement)||isParagraphTag());
     }
 
     public boolean verifyOfferSize() {
