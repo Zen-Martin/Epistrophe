@@ -22,7 +22,6 @@ public class HomeStep implements En {
         });
 
         Then("A redirection is made to Twitter with a message mentioning that the page does not exist", () -> {
-            homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyTwitterLinkError(),true);
         });
 
@@ -31,7 +30,6 @@ public class HomeStep implements En {
         });
 
         Then("A redirection is made to the Instagram page of the Epistrophe site", () -> {
-            homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyLogoLinkError(),true);
         });
 
@@ -48,7 +46,6 @@ public class HomeStep implements En {
         });
 
         Then("No reaction, the link is not associated with any url", () -> {
-            homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyPressBookLink(),true);
         });
 
@@ -57,7 +54,6 @@ public class HomeStep implements En {
         });
 
         Then("Text are placed in <a> tags instead of <p>", () -> {
-            homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyCarousselElement(),true);
         });
 
@@ -66,7 +62,6 @@ public class HomeStep implements En {
         });
 
         Then("Note that the elements are note aligned", () -> {
-            homePage.saveScreenShotPNG();
             Assert.assertEquals(homePage.verifyOfferSize(),true);
         });
 

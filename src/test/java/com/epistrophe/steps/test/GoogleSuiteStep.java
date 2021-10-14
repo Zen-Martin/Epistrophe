@@ -14,7 +14,6 @@ public class GoogleSuiteStep implements En {
     ){
 
         Then("There is an empty space between the title and the list of applications presented below", () -> {
-            googleSuitePage.saveScreenShotPNG();
             Assert.assertEquals(googleSuitePage.verifyEmptySpace(),true);
         });
 

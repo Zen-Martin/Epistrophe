@@ -130,16 +130,15 @@ public class Page {
     }
 
     public boolean verifyLink(WebElement element) {
-        String verify = "";
+        int verify = 0;
         try {
             URL link = new URL(element.getAttribute("href"));
             HttpURLConnection httpConn = (HttpURLConnection) link.openConnection();
-            httpConn.setConnectTimeout(3000);
             httpConn.connect();
-            verify = httpConn.getResponseCode()+"";
+            verify = httpConn.getResponseCode();
         } catch (Exception e) {
         }
-        return verify.startsWith("2");
+        return (verify==200);
     }
 
 

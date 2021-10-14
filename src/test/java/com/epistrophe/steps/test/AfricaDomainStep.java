@@ -13,7 +13,6 @@ public class AfricaDomainStep implements En {
     ){
 
         Then("A redirection is made to the site *epistrophe.africa*, that is not secure", () -> {
-            africaDomainPage.saveScreenShotPNG();
             Assert.assertEquals(africaDomainPage.verifyHeaderSecurity(),true);
         });
 

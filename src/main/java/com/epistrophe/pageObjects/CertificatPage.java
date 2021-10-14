@@ -5,13 +5,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class CertificatPage extends Page{
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[4]")
+    @FindBy(xpath = "//div[@id='Content']/div[1]/div[4]")
     private WebElement sslDv;
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[5]")
+    @FindBy(xpath = "//div[@id='Content']/div[1]/div[5]")
     private WebElement sslOv;
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[6]")
+    @FindBy(xpath = "//div[@id='Content']/div[1]/div[6]")
     private WebElement sslEv;
 
     public CertificatPage() {
@@ -23,7 +23,7 @@ public class CertificatPage extends Page{
 
     public boolean isSslSameHeight(){
         return (sslDv.getSize().getHeight() == sslOv.getSize().getHeight())
-                &&(sslDv.getSize().getHeight() == sslEv.getSize().getHeight());
+                &&(sslDv.getSize().getHeight()  == sslEv.getSize().getHeight());
     }
 
     public boolean isSslSameWidth(){

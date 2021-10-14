@@ -13,12 +13,11 @@ public class PortfolioStep implements En {
     ){
 
         Then("Page opens, some texts on the page are in English including *select category* and *next page*", () -> {
-            portfolioPage.saveScreenShotPNG();
             Assert.assertEquals(portfolioPage.verifyElementLangage(),true);
         });
 
         When("Page opens click on the image with the text *La location et la vente*", () -> {
-            portfolioPage.clickOnlocateOrSaleImage();
+            portfolioPage.clickOnSale();
         });
 
         When("The page opens, click on *voir le site*", () -> {
@@ -26,17 +25,15 @@ public class PortfolioStep implements En {
         });
 
         Then("Displaying the page with a site unreachable error", () -> {
-            portfolioPage.saveScreenShotPNG();
             Assert.assertEquals(portfolioPage.verifyWebsiteAccess(),true);
         });
 
         When("Page opens click on one item, in the breadcrumb trail below the title click on *Portfolio item*", () -> {
-            portfolioPage.clickOnlocateOrSaleImage();
+            portfolioPage.clickOnItem();
             portfolioPage.clickOnPortfolioItem();
         });
 
         Then("A {int} error page is displayed", (Integer int1) -> {
-            portfolioPage.saveScreenShotPNG();
             Assert.assertEquals(portfolioPage.verifyPortfolioItem(),true);
         });
     }

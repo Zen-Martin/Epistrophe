@@ -5,15 +5,14 @@ import org.openqa.selenium.support.FindBy;
 
 public class GoogleSuitePage extends Page{
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[2]/div[1]")
-    private WebElement spaceUnderHeader;
+    @FindBy(css = "#Content > div > div:nth-child(2) > div > iframe")
+    private WebElement spaceFrame;
 
     public GoogleSuitePage() {
      }
 
      public boolean verifyEmptySpace(){
-        return !spaceUnderHeader.getText().isEmpty();
+        return spaceFrame.getAttribute("src").contains("https");
      }
-
 
 }

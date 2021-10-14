@@ -1,21 +1,23 @@
 package com.epistrophe.pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class HomePage extends Page {
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='mfn-offer-slider']/div[1]/div[1]")
+    @FindBy(xpath = "//div[@id='mfn-offer-slider']/div[1]/div[1]")
     private WebElement caroussel;
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[10]")
+    @FindBy(xpath = "//div[@id='Content']/div[1]/div[10]")
     private WebElement firstOffer;
 
-    @FindBy(xpath = "//body/div[@id='Wrapper']/div[@id='Content']/div[1]/div[11]")
+    @FindBy(xpath = "//div[@id='Content']/div[1]/div[11]")
     private WebElement secondOffer;
 
     @FindBy(linkText = "Passez au Google Workspace ou à l'E-mail Pro")
@@ -24,38 +26,8 @@ public class HomePage extends Page {
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/a[1]")
     private WebElement twitterLogoHeader;
 
-    @FindBy(linkText = "Site web")
-    private WebElement siteWebHeader;
-
-    @FindBy(linkText = "Portfolio Sites Web")
-    private WebElement portFolio;
-
-    @FindBy(linkText = "Nom de domaine")
-    private WebElement domainName;
-
-    @FindBy(linkText = "Domaine en .Africa")
-    private WebElement africaDomain;
-
-    @FindBy(linkText = "Contacts & infos")
-    private WebElement contactInfo;
-
     @FindBy(linkText = "Press book")
     private WebElement pressBook;
-
-    @FindBy(linkText = "Messagerie Pro")
-    private WebElement messageriePro;
-
-    @FindBy(linkText = "Google Workspace")
-    private WebElement googleWorspace;
-
-    @FindBy(linkText = "Commandez votre nom de domaine")
-    private WebElement commandDomainName;
-
-    @FindBy(linkText = "Certificats SSL")
-    private WebElement certificatSsl;
-
-    @FindBy(linkText = "Offres Standard Epistrophe")
-    private WebElement standardOffer;
 
     @FindBy(xpath = "//header/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]")
     private WebElement gLogoHeader;
@@ -71,6 +43,11 @@ public class HomePage extends Page {
 
     @FindBy(css = ".sgpb-popup-close-button-1")
     private WebElement adsFrame;
+
+    @FindBy( css = "ul.menu li")
+    private List<WebElement> listNavBar;
+
+    private final static By subMenuSelector = By.cssSelector("ul.menu li a");
 
     public HomePage() {
     }
@@ -93,6 +70,27 @@ public class HomePage extends Page {
     public void navigateToHomePage() {
         get(config.getEnvironment());
         handleAccess();
+    }
+
+    private void clickOnNavBarItem( String elementNavigation, String itemNavigation  ){
+        WebElement button;
+        WebElement perform = listNavBar
+                .stream()
+                .filter( elt -> elt.getText().equals(elementNavigation))
+                .findFirst()
+                .get();
+
+        if(perform == null) throw new RuntimeException("Perform Element not found !");
+
+        action.moveToElement(perform).perform();
+        button = perform.findElements(subMenuSelector)
+                .stream()
+                .filter( elt-> elt.getText().equals(itemNavigation))
+                .findFirst()
+                .orElseThrow(()->new RuntimeException("Not element Found !"));
+
+        clickOn(button);
+        waitForLoadingPage();
     }
 
     public void scrollToTwitterReference(){
@@ -122,33 +120,23 @@ public class HomePage extends Page {
     }
 
     public void clickOnPortFolio(){
-        action.moveToElement(siteWebHeader).perform();
-        clickOn(portFolio);
-        waitForLoadingPage();
+        clickOnNavBarItem("Site web","Portfolio Sites Web");
     }
 
     public void clickOnAfricaDomain(){
-        action.moveToElement(domainName).perform();
-        clickOn(africaDomain);
-        waitForLoadingPage();
+        clickOnNavBarItem("Nom de domaine","Domaine en .Africa");
     }
 
     public void clickOnPressBook(){
-        action.moveToElement(contactInfo).perform();
-        clickOn(pressBook);
-        waitForLoadingPage();
+        clickOnNavBarItem("Contacts & infos", "Press book");
     }
 
     public void clickOnGoogleWorkspace(){
-        action.moveToElement(messageriePro).perform();
-        clickOn(googleWorspace);
-        waitForLoadingPage();
+        clickOnNavBarItem("Messagerie Pro","Google Workspace");
     }
 
     public void clickOnStandardOffer(){
-        action.moveToElement(certificatSsl).perform();
-        clickOn(standardOffer);
-        waitForLoadingPage();
+        clickOnNavBarItem("Certificats SSL","Offres Standard Epistrophe");
     }
 
     public void clickOnGLogo(){

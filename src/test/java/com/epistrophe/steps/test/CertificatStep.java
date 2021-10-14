@@ -17,7 +17,6 @@ public class CertificatStep implements En {
         });
 
         Then("It is noted that the size of the package presentation components is disproportionate", () -> {
-            certificatPage.saveScreenShotPNG();
             Assert.assertEquals(certificatPage.verifySslSize(),true);
         });
 
