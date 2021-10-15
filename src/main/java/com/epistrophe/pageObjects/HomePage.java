@@ -119,6 +119,10 @@ public class HomePage extends Page {
         waitForLoadingPage();
     }
 
+    public void clickOnAskDomain(){ clickOnNavBarItem("Nom de domaine","Commandez votre nom de domaine");}
+
+    public void clickOnContactUs(){ clickOnNavBarItem("Contacts & infos","Contactez-nous");}
+
     public void clickOnPortFolio(){
         clickOnNavBarItem("Site web","Portfolio Sites Web");
     }

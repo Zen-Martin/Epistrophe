@@ -73,6 +73,14 @@ public class HomeStep implements En {
             homePage.clickOnStandardOffer();
         });
 
+        When("In the navigation bar, put the cursor on *Contacts & infos* and click on *Contactez-nous*", () -> {
+            homePage.clickOnContactUs();
+        });
+
+        When("In the navigation bar, put the cursor on *Nom de domaine* and click on *Commandez votre nom de domaine*", () -> {
+            homePage.clickOnAskDomain();
+        });
+
 
 
 
