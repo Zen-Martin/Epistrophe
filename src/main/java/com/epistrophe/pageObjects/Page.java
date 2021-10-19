@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.ByteArrayInputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Duration;
 import java.util.function.Function;
 
@@ -46,7 +48,7 @@ public class Page {
         wait        = new WebDriverWait(driver, Duration.ofSeconds(4));
         shortWait   = new WebDriverWait(driver, Duration.ofSeconds(6));
         middleWait  = new WebDriverWait(driver, Duration.ofSeconds(12));
-        longWait    = new WebDriverWait(driver, Duration.ofSeconds(15));
+        longWait    = new WebDriverWait(driver, Duration.ofSeconds(60));
 
     }
 
@@ -126,6 +128,19 @@ public class Page {
         }
         element.click();
     }
+
+    public boolean verifyLink(WebElement element) {
+        int verify = 0;
+        try {
+            URL link = new URL(element.getAttribute("href"));
+            HttpURLConnection httpConn = (HttpURLConnection) link.openConnection();
+            httpConn.connect();
+            verify = httpConn.getResponseCode();
+        } catch (Exception e) {
+        }
+        return (verify==200);
+    }
+
 
     protected void scroll(int height){
         js.executeScript("window.scrollBy(0,"+height+")");
